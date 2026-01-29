@@ -4,7 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerBrain : MonoBehaviour
 {
 
+    [SerializeField] PlayerMotor playerMotor;
+    [SerializeField] PlayerCamera playerCamera;
+
     PlayerControls controls;
+
+    private Vector2 moveInput;
+
+
 
     private void Awake()
     {
@@ -15,8 +22,14 @@ public class PlayerBrain : MonoBehaviour
 
         controls.FPS.Move.performed += Move;
         controls.FPS.Move.canceled += Move;
+
+        controls.FPS.Look.performed += Look;
     }
 
+    private void Update()
+    {
+        playerMotor.Move(moveInput);
+    }
 
     private void Jump(InputAction.CallbackContext ctx)
     {
@@ -25,14 +38,15 @@ public class PlayerBrain : MonoBehaviour
 
     private void Move(InputAction.CallbackContext ctx)
     {
-        Vector2 input = ctx.ReadValue<Vector2>();
-
-        Debug.Log($"Moving: {input}");
+        moveInput = ctx.ReadValue<Vector2>();
     }
 
     private void Look(InputAction.CallbackContext ctx)
     {
-       
+        Vector2 input = ctx.ReadValue<Vector2>();
+
+        playerMotor.Rotate(input.x);
+        playerCamera.Rotate(input.y);
     }
 
     private void Sprint(InputAction.CallbackContext ctx)
