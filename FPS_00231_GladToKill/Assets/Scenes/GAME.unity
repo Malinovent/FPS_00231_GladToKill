@@ -863,13 +863,15 @@ GameObject:
   m_Component:
   - component: {fileID: 722578941}
   - component: {fileID: 722578940}
+  - component: {fileID: 722578943}
+  - component: {fileID: 722578942}
   m_Layer: 0
   m_Name: Pistolet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &722578940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98960fa0dc900b94b9e858905804b39e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pisolet
+  ammo: {fileID: 722578943}
+  raycaster: {fileID: 722578942}
 --- !u!4 &722578941
 Transform:
   m_ObjectHideFlags: 0
@@ -898,6 +902,37 @@ Transform:
   - {fileID: 381381609}
   m_Father: {fileID: 1501304758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722578942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722578939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f292c910d52a749aff0a4879f97ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Raycaster
+  validLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  mainCamera: {fileID: 0}
+--- !u!114 &722578943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722578939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5067d93ac68afb43885c7200725a73b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ammo
+  maxAmmo: 12
+  maxMagazine: 3
+  reloadTime: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,8 +1214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGunManager
   weapons:
-  - {fileID: 1721011641}
   - {fileID: 722578940}
+  - {fileID: 1721011641}
 --- !u!1 &1328015403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1721011640
 Transform:
   m_ObjectHideFlags: 0
