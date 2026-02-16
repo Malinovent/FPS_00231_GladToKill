@@ -1265,6 +1265,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1302962162597230010, guid: 738ef79fb9d1a7c4c85f0885bb2cb8e2, type: 3}
   firePoint: {fileID: 1771977453}
   raycaster: {fileID: 1141004361}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1141004359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,7 +1311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Raycaster
   validLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   mainCamera: {fileID: 0}
 --- !u!1 &1267961425
 GameObject:
