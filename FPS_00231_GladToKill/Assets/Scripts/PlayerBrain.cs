@@ -80,3 +80,125 @@ public class PlayerBrain : MonoBehaviour
         Debug.Log("Sprint!");
     }
 }
+
+/// <summary>
+/// Interact with interactables
+/// </summary>
+public class Interactor : MonoBehaviour
+{
+    [SerializeField] private float raycastDistance = 3;
+    [SerializeField] private Raycaster raycaster;
+
+    //Store interactable
+    private IInteractable currentObject;
+
+    public void FindInteractable()
+    {
+        //Ray pour trouver interactable
+        RaycastHit hit = raycaster.FireShot();
+
+        IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+        currentObject = interactable;
+    }
+
+    public void Interact()
+    {
+        /*if(currentObject)
+        {
+            currentObject.Interact();
+        }*/
+
+        currentObject?.Interact();
+        //Interact with object
+    }
+}
+
+public abstract class InteractableObject : MonoBehaviour
+{
+    public abstract void Interact();
+}
+
+public class Door : InteractableObject
+{
+    public override void Interact()
+    {
+        OpenDoor();
+    }
+
+    private void OpenDoor()
+    {
+        
+    }
+}
+
+public class NPC : InteractableObject
+{
+    public override void Interact()
+    {
+        StartDialogue();
+    }
+
+    private void StartDialogue()
+    {
+
+    }
+}
+
+public class Lever : InteractableObject
+{
+    private bool isActive = false;
+
+    public override void Interact()
+    {
+        isActive = !isActive;
+    }
+}
+
+
+
+public interface IInteractable
+{
+    public void Interact();
+}
+
+
+public class Health : MonoBehaviour, IDamageable
+{
+    [SerializeField] private int startingHealth;
+    [SerializeField] private int maxHealth;
+
+    private int currentHealth;
+
+    private void Awake()
+    {
+        currentHealth = startingHealth;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+    }
+}
+
+public class Dummy : MonoBehaviour, IDamageable
+{
+    public void TakeDamage(int amount)
+    {
+        //Jouer animation
+    }
+}
+
+public interface IDamageable
+{
+    public void TakeDamage(int amount);
+}
