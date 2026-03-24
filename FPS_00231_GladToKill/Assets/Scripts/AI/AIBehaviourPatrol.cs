@@ -1,10 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIBehaviourPatrol : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float destinationThreshold;
+    [SerializeField] private float patrolSpeed;
+
+    private NavMeshAgent agent;
 
     private int currentWaypointIndex = 0;
     private Transform currentWaypoint;
@@ -12,10 +16,17 @@ public class AIBehaviourPatrol : MonoBehaviour
     //Callback
     public event Action<Transform> onNewWaypoint;
 
-    private void Start()
+    public void Initialize(NavMeshAgent agent)
+    {
+        this.agent = agent;
+    }
+
+    public void StartPatrol()
     {
         currentWaypoint = waypoints[currentWaypointIndex];
-        onNewWaypoint?.Invoke(currentWaypoint);
+        agent.speed = patrolSpeed;
+        agent.SetDestination(currentWaypoint.position);
+        //onNewWaypoint?.Invoke(currentWaypoint);
     }
 
 
@@ -42,7 +53,8 @@ public class AIBehaviourPatrol : MonoBehaviour
         }
 
         currentWaypoint = waypoints[currentWaypointIndex];
-        onNewWaypoint?.Invoke(currentWaypoint);
+        agent.SetDestination(currentWaypoint.position);
+        //onNewWaypoint?.Invoke(currentWaypoint);
     }
 
     private void OnDrawGizmos()

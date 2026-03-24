@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 31087683}
   - component: {fileID: 31087685}
   - component: {fileID: 31087684}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 110659654}
   - component: {fileID: 110659657}
   - component: {fileID: 110659656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 235628633}
   - component: {fileID: 235628636}
   - component: {fileID: 235628635}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 381381609}
   - component: {fileID: 381381612}
   - component: {fileID: 381381611}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,6 +1468,8 @@ GameObject:
   - component: {fileID: 619986790}
   - component: {fileID: 619986789}
   - component: {fileID: 619986794}
+  - component: {fileID: 619986796}
+  - component: {fileID: 619986795}
   m_Layer: 0
   m_Name: AI Enemy
   m_TagString: Untagged
@@ -1489,6 +1491,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIEnemy
   agent: {fileID: 619986790}
   patrolBehaviour: {fileID: 619986794}
+  chaseBehaviour: {fileID: 619986796}
+  hearingSense: {fileID: 619986795}
 --- !u!195 &619986790
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1603,6 +1607,37 @@ MonoBehaviour:
   - {fileID: 1267286848}
   - {fileID: 495623696}
   destinationThreshold: 1
+  patrolSpeed: 3.5
+--- !u!114 &619986795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619986788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99dfa55e1ea9a584b86c955f14b65d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AISenseHearing
+  hearingRadius: 10
+  validLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!114 &619986796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619986788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e75aec255411154f82666108363f48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIBehaviourChase
+  chaseSpeed: 2
+  exitRadius: 15
 --- !u!1 &722578939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1650,7 @@ GameObject:
   - component: {fileID: 722578940}
   - component: {fileID: 722578943}
   - component: {fileID: 722578942}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pistolet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2062,7 +2097,7 @@ GameObject:
   - component: {fileID: 994595836}
   - component: {fileID: 994595835}
   - component: {fileID: 994595834}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,7 +2191,7 @@ GameObject:
   - component: {fileID: 1067847644}
   - component: {fileID: 1067847647}
   - component: {fileID: 1067847646}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2248,7 +2283,7 @@ GameObject:
   - component: {fileID: 1141004359}
   - component: {fileID: 1141004358}
   - component: {fileID: 1141004361}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rocket Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2396,7 +2431,7 @@ GameObject:
   - component: {fileID: 1267961430}
   - component: {fileID: 1267961431}
   - component: {fileID: 1267961432}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Joueur
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2427,7 +2462,7 @@ Transform:
   m_GameObject: {fileID: 1267961425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.1, y: -0, z: -23.2}
+  m_LocalPosition: {x: 14.7, y: -0, z: 5.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2838,7 +2873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1501304758}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2875,7 +2910,7 @@ GameObject:
   - component: {fileID: 1582073987}
   - component: {fileID: 1582073990}
   - component: {fileID: 1582073989}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3098,7 +3133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721011640}
   - component: {fileID: 1721011641}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3203,7 +3238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1771977453}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
